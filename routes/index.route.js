@@ -5,4 +5,5 @@ const router = Router()
 
 router.use("/sessions", authRoutes)
 
+
 export default router; 

@@ -12,4 +12,16 @@ const create = async (req, res, next) => {
     }
   };
 
-export { create }
+  const login = async (req, res, next) => {
+    try {
+      return res.status(200).json({
+        message: "LOGGED IN",
+        token: req.token
+      });
+    } catch (error) {
+      return next(error);
+    }
+  };
+  
+
+export { create, login}
