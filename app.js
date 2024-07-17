@@ -15,6 +15,7 @@ const ready = ()=> {
 server.listen(PORT,ready);
 server.use(cors());
 server.use(morgan("dev"));
+server.use(express.json());
 //router
 server.get("/", (req, res, next) => {
   try {
