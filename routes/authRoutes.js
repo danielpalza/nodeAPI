@@ -9,6 +9,6 @@ import createToken from "../middlewares/createToken.js"
 
 const router = Router()
 
-router.post("/", accountExists, createHash, create);
-router.post("/", userExists, verifyHash, createToken, login);
+router.post("/register", accountExists, createHash, create);
+router.post("/login", userExists, verifyHash, createToken, login);
 export default router;
