@@ -13,9 +13,11 @@ const create = async (req, res, next) => {
   };
   const read = async (req, res, next) => {
     try {
-      const one = await Card.findById(req.body._id);
-      if(one){
-        return res.status(201).json({message:"success",data:one});
+      const all = await Card.find();
+      if(all){
+        console.log(all);
+        
+        return res.status(201).json({message:"success",data:all});
       }
       else{
         return res.status(400).json({
@@ -40,10 +42,14 @@ const create = async (req, res, next) => {
   };
 
   const deleteCard = async (req, res, next) => {
+    console.log(req.body.id);
+    
     try {
-      const one = await Card.deleteOne({ _id: req.body._id });
-      if(one>0){
-        return res.status(201).json({
+      const one = await Card.deleteOne({ _id: req.body.id });
+      console.log(one);
+      
+      if(one.acknowledged){
+        return res.status(200).json({
           message: "DELETED Card_ID: " + one._id,
         });
       }

@@ -3,6 +3,8 @@ import List  from "../models/List.js";
 const create = async (req, res, next) => {
     try {
       const data = req.body;
+      console.log(data);
+      
       const one = await List.create(data);
       return res.status(201).json({
         message: "CREATED LIST_ID: " + one._id,
@@ -12,14 +14,21 @@ const create = async (req, res, next) => {
     }
   };
   const read = async (req, res, next) => {
+    const list = [];
     try {
-      const one = await List.findById(req.body._id);
-      if(one){
-        return res.status(201).json({message:"success",data:one});
+      const all = await List.find();
+      console.log(all);
+      
+      all.forEach(e => {
+        list.push({name:e.name, id:e._id})
+      });
+      console.log(list);
+      if(all){
+        return res.status(201).json({message:"success",data:list});
       }
       else{
         return res.status(400).json({
-            message: "failed", data: null
+            message: "failed to find lists", data: null
           });
       }
       
@@ -27,6 +36,7 @@ const create = async (req, res, next) => {
       return next(error);
     }
   };
+
   const update = async (req, res, next) => {
     try {
       const data = req.body;
@@ -41,8 +51,13 @@ const create = async (req, res, next) => {
 
   const deleteList = async (req, res, next) => {
     try {
+      console.log( req.body._id);
+      
       const one = await List.deleteOne({ _id: req.body._id });
-      if(one>0){
+
+      console.log(one);
+      
+      if(one.acknowledged){
         return res.status(201).json({
           message: "DELETED List_ID: " + one._id,
         });

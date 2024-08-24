@@ -4,7 +4,7 @@ const collection = "lists"
 
 const schema = new Schema({
     name: { type: String, required: true },
-    board_id: { type: Schema.Types.ObjectId, ref: 'Board', required: true }
+    board_id: { type: Schema.Types.ObjectId, ref: 'List', required: true }
 
 },{timestamps: true});
 
