@@ -4,9 +4,9 @@ import { create, deleteCard, read, update } from "../controllers/cardController.
 
 const router = Router()
 
-router.post("/delete", deleteCard);
-router.post("/create", create);
-router.post("/update", update);
-router.post("/read", read);
+router.post("/delete", verifyToken, deleteCard);
+router.post("/create", verifyToken, create);
+router.post("/update", verifyToken, update);
+router.post("/read", verifyToken, read);
 
 export default router;

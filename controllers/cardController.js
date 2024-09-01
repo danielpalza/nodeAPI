@@ -30,9 +30,10 @@ const create = async (req, res, next) => {
     }
   };
   const update = async (req, res, next) => {
+    
     try {
-      const data = req.body;
-      const one = await Card.findByIdAndUpdate(data._id,data);
+      const data = req.body;      
+      const one = await Card.findByIdAndUpdate(data.idCard, {"list_id":data.idList});
       return res.status(201).json({
         message: "UPDATED Card_ID: " + one._id,
       });

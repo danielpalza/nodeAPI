@@ -4,9 +4,9 @@ import { create, deleteList, read, update } from "../controllers/listController.
 
 const router = Router()
 
-router.post("/delete", deleteList);
-router.post("/create", create);
-router.post("/update", update);
-router.post("/read", read);
+router.post("/delete", verifyToken, deleteList);
+router.post("/create", verifyToken, create);
+router.post("/update", verifyToken, update);
+router.post("/read", verifyToken, read);
 
 export default router;
